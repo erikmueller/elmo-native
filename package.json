@@ -1,0 +1,46 @@
+{
+  "name": "elmo",
+  "version": "0.0.1",
+  "description": "The epages lightweight back office built with React Native.",
+  "author": "Erik Müller <e.mueller.mail@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "mobile",
+    "react-native",
+    "elmo",
+    "backoffice",
+    "dashboard"
+  ],
+  "scripts": {
+    "android-setup-port": "adb reverse tcp:8081 tcp:8080",
+    "bundle": "rnws bundle",
+    "test": "eslint src",
+    "start": "rnws start"
+  },
+  "engines": {
+    "node": ">=4",
+    "npm": ">=2 <4"
+  },
+  "dependencies": {
+    "react-native": "^0.21.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.3.17",
+    "babel-eslint": "^5.0.0-beta6",
+    "babel-loader": "^6.2.0",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "babel-preset-stage-1": "^6.3.13",
+    "eslint": "~2.2.0",
+    "eslint-config-standard": "^5.1.0",
+    "eslint-config-standard-jsx": "^1.1.1",
+    "eslint-config-standard-react": "^2.3.0",
+    "eslint-loader": "^1.1.1",
+    "eslint-plugin-promise": "^1.1.0",
+    "eslint-plugin-react": "^4.0.0",
+    "eslint-plugin-standard": "^1.3.2",
+    "react-native-webpack-server": "^0.8.3",
+    "webpack": "^1.12.9",
+    "webpack-dev-server": "^1.14.0"
+  }
+}
