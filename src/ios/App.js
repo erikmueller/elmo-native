@@ -1,30 +1,39 @@
-import React, {Component, TabBarIOS} from 'react-native'
-import TabBarItem from './components/TabBarItem.jsx'
+import React, {Component, ListView, Text} from 'react-native'
+import Drawer from 'react-native-drawer'
+import NavigationBar from 'react-native-navbar'
+
+const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
 
 class App extends Component {
   state = {
+    dataSource: ds.cloneWithRows(['row 1', 'row 2']),
     selectedTab: 'redTab'
   };
 
-  switchTab = (tab) => this.setState({selectedTab: tab});
-  renderTab = (id, title, color, icon) =>
-    <TabBarItem
-      id={id}
-      title={title}
-      color={color}
-      icon={icon}
-      isSelected={this.state.selectedTab === id}
-      onPress={this.switchTab}
+  setDrawerRef = (ref) => { this._drawer = ref };
+  renderRow = (rowData) => <Text>{rowData}</Text>;
+  renderContent = () =>
+    <ListView
+      dataSource={this.state.dataSource}
+      renderRow={this.renderRow}
     />;
 
   render = () => (
-    <TabBarIOS
-      tintColor='white'
-      barTintColor='darkslateblue'>
-        {this.renderTab('blueTab', 'Blue Tab', '#414A8C', 'contacts')}
-        {this.renderTab('redTab', 'Red Tab', '#783E33', 'history')}
-        {this.renderTab('greenTab', 'Green Tab', '#21551C', 'more')}
-    </TabBarIOS>
+    <Drawer acceptTap
+      ref={this.setDrawerRef}
+      type='static'
+      content={this.renderContent()}
+      openDrawerOffset={100}
+      styles={{main: {shadowColor: '#000000', shadowOpacity: 0.4, shadowRadius: 3}}}
+      tweenHandler={Drawer.tweenPresets.parallax}>
+      <NavigationBar
+        statusBar={{hidden: false}}
+        title={{title: 'elmo'}}
+        leftButton={{
+          title: 'Menu',
+          handler: () => this._drawer.open()
+        }} />
+    </Drawer>
   );
 }
 

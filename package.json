@@ -22,7 +22,9 @@
     "npm": ">=2 <4"
   },
   "dependencies": {
-    "react-native": "^0.21.0"
+    "react-native": "^0.21.0",
+    "react-native-drawer": "2.0.0",
+    "react-native-navbar": "1.4.2"
   },
   "devDependencies": {
     "babel-core": "^6.3.17",
