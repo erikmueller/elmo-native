@@ -1,29 +1,30 @@
-import React, {Component, TabBarIOS} from 'react-native'
+import React, {Component, TabBarIOS, Text} from 'react-native'
+
+import Orders from './views/Orders.jsx'
 import TabBarItem from './components/TabBarItem.jsx'
 
 class App extends Component {
   state = {
-    selectedTab: 'redTab'
+    selectedTab: 'orders'
   };
 
   switchTab = (tab) => this.setState({selectedTab: tab});
-  renderTab = (id, title, color, icon) =>
+  renderTab = (id, icon, children) =>
     <TabBarItem
       id={id}
-      title={title}
-      color={color}
-      icon={icon}
-      isSelected={this.state.selectedTab === id}
-      onPress={this.switchTab}
+      systemIcon={icon}
+      selected={this.state.selectedTab === id}
+      handlePress={this.switchTab}
+      children={children}
     />;
 
   render = () => (
     <TabBarIOS
       tintColor='white'
-      barTintColor='darkslateblue'>
-        {this.renderTab('blueTab', 'Blue Tab', '#414A8C', 'contacts')}
-        {this.renderTab('redTab', 'Red Tab', '#783E33', 'history')}
-        {this.renderTab('greenTab', 'Green Tab', '#21551C', 'more')}
+      barTintColor='#81c04d'>
+        {this.renderTab('orders', 'most-viewed', <Orders/>)}
+        {this.renderTab('sales', 'favorites', <Text>Sales</Text>)}
+        {this.renderTab('more', 'more', <Text>More</Text>)}
     </TabBarIOS>
   );
 }
